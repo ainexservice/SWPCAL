@@ -1,0 +1,340 @@
+/* ============================
+   AINEX SBI SWP Calculator
+   Part 2 - style.css
+============================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+    color:#222;
+}
+
+.container{
+    width:95%;
+    max-width:1400px;
+    margin:auto;
+    padding:30px 0;
+}
+
+/* HEADER */
+
+.header{
+    background:#fff;
+    padding:18px 25px;
+    border-radius:18px;
+    margin-bottom:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.logo{
+    width:75px;
+    height:75px;
+    object-fit:contain;
+}
+
+.logo-area h1{
+    font-size:32px;
+    color:#005BAC;
+}
+
+.logo-area p{
+    color:#666;
+    margin-top:4px;
+}
+
+/* MAIN */
+
+.calculator{
+    display:grid;
+    grid-template-columns:390px 1fr;
+    gap:22px;
+}
+
+/* LEFT */
+
+.left-panel{
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+
+.form-group{
+    margin-bottom:25px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:10px;
+    font-size:17px;
+    font-weight:600;
+}
+
+.input-box{
+
+    display:flex;
+    align-items:center;
+
+    border:1px solid #dce4f3;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    height:56px;
+
+}
+
+.currency-box{
+
+    width:55px;
+
+    background:#eaf2ff;
+
+    color:#005BAC;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    height:100%;
+
+    border-right:1px solid #dce4f3;
+
+}
+
+.input-box input{
+
+    flex:1;
+
+    border:none;
+
+    outline:none;
+
+    padding:0 15px;
+
+    font-size:22px;
+
+    background:#fff;
+
+}
+
+/* Slider */
+
+input[type=range]{
+
+    width:100%;
+
+    margin-top:15px;
+
+    accent-color:#005BAC;
+
+    cursor:pointer;
+
+}
+
+/* Range Text */
+
+.range-text{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-top:8px;
+
+    color:#666;
+
+    font-size:13px;
+
+}
+
+/* BUTTON */
+
+button{
+
+    width:100%;
+
+    height:56px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#005BAC;
+
+    color:#fff;
+
+    font-size:18px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    background:#00458f;
+
+    transform:translateY(-2px);
+
+}
+
+/* RIGHT */
+
+.right-panel{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+/* RESULT */
+
+.result-card{
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.result-card h4{
+
+    color:#666;
+
+    margin-bottom:12px;
+
+}
+
+.result-card h2{
+
+    color:#005BAC;
+
+    font-size:38px;
+
+}
+
+/* CHART */
+
+.chart-box{
+
+    grid-column:1/-1;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.chart-box canvas{
+
+    width:100% !important;
+
+    height:400px !important;
+
+}
+
+/* STATUS */
+
+.status-box{
+
+    grid-column:1/-1;
+
+    padding:18px;
+
+    border-radius:12px;
+
+    background:#ecfff1;
+
+    color:#0a8a36;
+
+    font-weight:600;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+.calculator{
+
+grid-template-columns:1fr;
+
+}
+
+.right-panel{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.logo-area{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+.logo{
+
+width:60px;
+
+height:60px;
+
+}
+
+.logo-area h1{
+
+font-size:26px;
+
+}
+
+.result-card h2{
+
+font-size:30px;
+
+}
+
+.chart-box canvas{
+
+height:280px !important;
+
+}
+
+}
