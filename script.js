@@ -1,9 +1,8 @@
-// ==============================
+// ======================================
 // AINEX SBI SWP Calculator
-// Part 3
-// ==============================
+// Part 3 - script.js
+// ======================================
 
-// INPUTS
 const investmentInput = document.getElementById("investmentInput");
 const investmentSlider = document.getElementById("investmentSlider");
 
@@ -16,43 +15,44 @@ const returnSlider = document.getElementById("returnSlider");
 const yearInput = document.getElementById("yearInput");
 const yearSlider = document.getElementById("yearSlider");
 
-// OUTPUT
 const investmentResult = document.getElementById("investmentResult");
 const withdrawResult = document.getElementById("withdrawResult");
 const interestResult = document.getElementById("interestResult");
 const corpusResult = document.getElementById("corpusResult");
 const statusBox = document.getElementById("statusBox");
 
-let chart;
+let swpChart;
 
-// ----------------------------
+// ===============================
+// Helpers
+// ===============================
 
-function getNumber(value) {
-  return Number(String(value).replace(/,/g, ""));
+function numberValue(v) {
+  return Number(String(v).replace(/,/g, "")) || 0;
 }
 
-function formatIndian(value) {
-  return Number(value).toLocaleString("en-IN");
+function indian(v) {
+  return Number(v).toLocaleString("en-IN");
 }
 
-function money(value) {
-  return "₹" + Number(value).toLocaleString("en-IN");
+function money(v) {
+  const value = Math.round(v);
+  return "₹" + Math.abs(value).toLocaleString("en-IN");
 }
 
-// ----------------------------
-// Investment
+// ===============================
+// Sync Investment
+// ===============================
 
 investmentInput.addEventListener("input", () => {
   
-  let amount = getNumber(investmentInput.value);
+  let value = numberValue(investmentInput.value);
   
-  if (isNaN(amount)) amount = 1000;
+  value = Math.max(1, Math.min(10000000, value));
   
-  amount = Math.max(1, Math.min(10000000, amount));
+  investmentInput.value = indian(value);
   
-  investmentSlider.value = amount;
-  
-  investmentInput.value = formatIndian(amount);
+  investmentSlider.value = value;
   
   calculate();
   
@@ -60,17 +60,25 @@ investmentInput.addEventListener("input", () => {
 
 investmentSlider.addEventListener("input", () => {
   
-  investmentInput.value = formatIndian(investmentSlider.value);
+  investmentInput.value = indian(investmentSlider.value);
   
   calculate();
   
 });
 
-// Withdrawal
+// ===============================
+// Sync Withdrawal
+// ===============================
 
 withdrawInput.addEventListener("input", () => {
   
-  withdrawSlider.value = getNumber(withdrawInput.value);
+  let value = numberValue(withdrawInput.value);
+  
+  value = Math.max(1, Math.min(5000000, value));
+  
+  withdrawInput.value = indian(value);
+  
+  withdrawSlider.value = value;
   
   calculate();
   
@@ -78,81 +86,87 @@ withdrawInput.addEventListener("input", () => {
 
 withdrawSlider.addEventListener("input", () => {
   
-  withdrawInput.value = withdrawSlider.value;
+  withdrawInput.value = indian(withdrawSlider.value);
   
   calculate();
   
 });
 
+// ===============================
 // Return
+// ===============================
 
-returnInput.addEventListener("input", () => {
+returnInput.oninput = () => {
   
   returnSlider.value = returnInput.value;
   
   calculate();
   
-});
+};
 
-returnSlider.addEventListener("input", () => {
+returnSlider.oninput = () => {
   
   returnInput.value = returnSlider.value;
   
   calculate();
   
-});
+};
 
+// ===============================
 // Years
+// ===============================
 
-yearInput.addEventListener("input", () => {
+yearInput.oninput = () => {
   
   yearSlider.value = yearInput.value;
   
   calculate();
   
-});
+};
 
-yearSlider.addEventListener("input", () => {
+yearSlider.oninput = () => {
   
   yearInput.value = yearSlider.value;
   
   calculate();
   
-});
+};
 
-// ----------------------------
+// ===============================
+// Calculate
+// ===============================
 
 function calculate() {
   
-  const investment = getNumber(investmentInput.value);
+  const investment = numberValue(investmentInput.value);
   
-  const withdrawal = getNumber(withdrawInput.value);
+  const withdrawal = numberValue(withdrawInput.value);
   
-  const annualRate = parseFloat(returnInput.value);
+  const annual = Number(returnInput.value);
   
-  const years = parseInt(yearInput.value);
+  const years = Number(yearInput.value);
+  
+  const monthly = annual / 12 / 100;
   
   let corpus = investment;
   
-  let totalWithdrawal = 0;
+  let withdrawalTotal = 0;
   
-  const monthlyRate = annualRate / 12 / 100;
+  let labels = [];
   
-  const labels = [];
-  
-  const values = [];
+  let values = [];
   
   let exhausted = false;
   
-  for (let month = 1; month <= years * 12; month++) {
+  for (let m = 1; m <= years * 12; m++) {
     
-    corpus += corpus * monthlyRate;
+    corpus += corpus * monthly;
     
     corpus -= withdrawal;
     
-    totalWithdrawal += withdrawal;
+    withdrawalTotal += withdrawal;
     
-    labels.push(month);
+    labels.push(m);
     
     values.push(corpus);
     
@@ -166,35 +180,21 @@ function calculate() {
     
   }
   
-  const interest = (corpus + totalWithdrawal) - investment;
+  const interest = corpus + withdrawalTotal - investment;
   
-  investmentResult.innerHTML = money(investment);
+  investmentResult.innerHTML = "₹" + indian(investment);
   
-  withdrawResult.innerHTML = money(totalWithdrawal);
+  withdrawResult.innerHTML = "₹" + indian(withdrawalTotal);
   
-  if (interest >= 0) {
-    
-    interestResult.innerHTML =
-      `<span style="color:#16a34a;">+${money(Math.round(interest))}</span>`;
-    
-  } else {
-    
-    interestResult.innerHTML =
-      `<span style="color:#dc2626;">-${money(Math.abs(Math.round(interest)))}</span>`;
-    
-  }
+  interestResult.innerHTML =
+    interest >= 0 ?
+    `<span style="color:#16a34a;">+${money(interest)}</span>` :
+    `<span style="color:#dc2626;">-${money(interest)}</span>`;
   
-  if (corpus >= 0) {
-    
-    corpusResult.innerHTML =
-      `<span style="color:#005BAC;">${money(Math.round(corpus))}</span>`;
-    
-  } else {
-    
-    corpusResult.innerHTML =
-      `<span style="color:#dc2626;">-${money(Math.abs(Math.round(corpus)))}</span>`;
-    
-  }
+  corpusResult.innerHTML =
+    corpus >= 0 ?
+    `<span style="color:#005BAC;">${money(corpus)}</span>` :
+    `<span style="color:#dc2626;">-${money(corpus)}</span>`;
   
   statusBox.innerHTML =
     exhausted ?
@@ -205,15 +205,17 @@ function calculate() {
   
 }
 
-// ----------------------------
+// ===============================
+// Chart
+// ===============================
 
 function drawChart(labels, data) {
   
   const ctx = document.getElementById("swpChart");
   
-  if (chart) chart.destroy();
+  if (swpChart) swpChart.destroy();
   
-  chart = new Chart(ctx, {
+  swpChart = new Chart(ctx, {
     
     type: "line",
     
@@ -223,13 +225,11 @@ function drawChart(labels, data) {
       
       datasets: [{
         
-        label: "Corpus",
-        
         data: data,
         
         borderColor: "#005BAC",
         
-        backgroundColor: "rgba(0,91,172,.12)",
+        backgroundColor: "rgba(0,91,172,.15)",
         
         fill: true,
         
