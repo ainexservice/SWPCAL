@@ -6,12 +6,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>AINEX SWP CALCULATOR</title>
+    <title>AINEX SBI SWP Calculator</title>
+
+    <meta name="description" content="Free SBI SWP Calculator by AINEX. Calculate Systematic Withdrawal Plan returns instantly.">
 
     <link rel="stylesheet" href="style.css">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+    <!-- Font Awesome -->
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
@@ -19,250 +28,256 @@
 
 <body>
 
-<div class="container">
+    <main class="container">
 
-    <!-- Header -->
+        <!-- Header -->
 
-    <header class="header">
+        <header class="header">
 
-        <div class="logo-area">
+            <div class="logo-box">
 
-            <img src="assets/logo.png" alt="AINEX Logo" class="logo">
+                <img src="assets/logo.png" alt="AINEX Logo" class="logo">
 
-            <div>
+                <div>
 
-                <h1>AINEX SWP CALCULATOR</h1>
+                    <h1>AINEX SBI SWP Calculator</h1>
 
-                <p>Professional Systematic Withdrawal Plan Calculator</p>
-
-            </div>
-
-        </div>
-
-    </header>
-
-    <!-- Calculator -->
-
-    <section class="calculator">
-
-        <!-- LEFT PANEL -->
-
-        <aside class="left-panel">
-
-            <!-- Investment -->
-
-            <div class="form-group">
-
-                <label>Total Investment (₹)</label>
-
-                <div class="input-box">
-
-                    <div class="currency-box">₹</div>
-
-                    <input
-                        type="text"
-                        id="investmentInput"
-                        value="1,000"
-                        autocomplete="off"
-                        placeholder="Enter Investment">
-
-                </div>
-
-                <input
-                    type="range"
-                    id="investmentSlider"
-                    min="1"
-                    max="10000000"
-                    step="1"
-                    value="1000">
-
-                <div class="range-text">
-
-                    <span>₹1</span>
-
-                    <span>₹1,00,00,000</span>
+                    <p>Professional Systematic Withdrawal Plan Calculator</p>
 
                 </div>
 
             </div>
 
-            <!-- Withdrawal -->
+        </header>
 
-            <div class="form-group">
+        <!-- Calculator -->
 
-                <label>Monthly Withdrawal (₹)</label>
+        <section class="calculator">
 
-                <div class="input-box">
+            <!-- Left Panel -->
 
-                    <div class="currency-box">₹</div>
+            <aside class="left-panel">
+
+                <!-- Investment -->
+
+                <div class="form-group">
+
+                    <label>Total Investment (₹)</label>
+
+                    <div class="input-box">
+
+                        <span class="icon">₹</span>
+
+                        <input
+                            type="text"
+                            id="investmentInput"
+                            value="1,000"
+                            autocomplete="off">
+
+                    </div>
 
                     <input
-                        type="text"
-                        id="withdrawInput"
+                        type="range"
+                        id="investmentSlider"
+                        min="1"
+                        max="10000000"
+                        step="1"
+                        value="1000">
+
+                    <div class="range-text">
+
+                        <span>₹1</span>
+
+                        <span>₹1,00,00,000</span>
+
+                    </div>
+
+                </div>
+
+                <!-- Withdrawal -->
+
+                <div class="form-group">
+
+                    <label>Monthly Withdrawal (₹)</label>
+
+                    <div class="input-box">
+
+                        <span class="icon">₹</span>
+
+                        <input
+                            type="text"
+                            id="withdrawInput"
+                            value="500"
+                            autocomplete="off">
+
+                    </div>
+
+                    <input
+                        type="range"
+                        id="withdrawSlider"
+                        min="1"
+                        max="5000000"
+                        step="1"
                         value="500">
 
-                </div>
+                    <div class="range-text">
 
-                <input
-                    type="range"
-                    id="withdrawSlider"
-                    min="500"
-                    max="500000"
-                    step="500"
-                    value="500">
+                        <span>₹1</span>
 
-                <div class="range-text">
+                        <span>₹50,00,000</span>
 
-                    <span>₹500</span>
-
-                    <span>₹5,00,000</span>
+                    </div>
 
                 </div>
 
-            </div>
+                <!-- Return -->
 
-            <!-- Return -->
+                <div class="form-group">
 
-            <div class="form-group">
+                    <label>Expected Annual Return (%)</label>
 
-                <label>Expected Annual Return (%)</label>
+                    <div class="input-box">
 
-                <div class="input-box">
+                        <input
+                            type="number"
+                            id="returnInput"
+                            value="10"
+                            min="1"
+                            max="20"
+                            step="0.1">
+
+                        <span class="icon">%</span>
+
+                    </div>
 
                     <input
-                        type="number"
-                        id="returnInput"
-                        value="10"
+                        type="range"
+                        id="returnSlider"
                         min="1"
                         max="20"
-                        step="0.1">
+                        step="0.1"
+                        value="10">
 
-                    <div class="currency-box">%</div>
+                    <div class="range-text">
 
-                </div>
+                        <span>1%</span>
 
-                <input
-                    type="range"
-                    id="returnSlider"
-                    min="1"
-                    max="20"
-                    step="0.1"
-                    value="10">
+                        <span>20%</span>
 
-                <div class="range-text">
-
-                    <span>1%</span>
-
-                    <span>20%</span>
+                    </div>
 
                 </div>
 
-            </div>
+                <!-- Duration -->
 
-            <!-- Duration -->
+                <div class="form-group">
 
-            <div class="form-group">
+                    <label>Duration (Years)</label>
 
-                <label>Duration (Years)</label>
+                    <div class="input-box">
 
-                <div class="input-box">
+                        <input
+                            type="number"
+                            id="yearInput"
+                            value="10"
+                            min="1"
+                            max="50">
+
+                        <span class="icon">Yr</span>
+
+                    </div>
 
                     <input
-                        type="number"
-                        id="yearInput"
-                        value="10"
+                        type="range"
+                        id="yearSlider"
                         min="1"
-                        max="50">
+                        max="50"
+                        step="1"
+                        value="10">
 
-                    <div class="currency-box">Yr</div>
+                    <div class="range-text">
 
-                </div>
+                        <span>1 Year</span>
 
-                <input
-                    type="range"
-                    id="yearSlider"
-                    min="1"
-                    max="50"
-                    step="1"
-                    value="10">
+                        <span>50 Years</span>
 
-                <div class="range-text">
-
-                    <span>1 Year</span>
-
-                    <span>50 Years</span>
+                    </div>
 
                 </div>
 
-            </div>
+                <button id="calculateBtn">
 
-            <button id="calculateBtn">
+                    <i class="fa-solid fa-calculator"></i>
 
-                <i class="fa-solid fa-calculator"></i>
+                    Calculate SWP
 
-                Calculate SWP
+                </button>
 
-            </button>
+            </aside>
 
-        </aside>
+            <!-- Right Panel -->
 
-        <!-- RIGHT PANEL -->
+            <section class="right-panel">
 
-        <section class="right-panel">
+                <div class="cards">
 
-            <div class="result-card">
+                    <div class="card">
 
-                <h4>Total Investment</h4>
+                        <p>Total Investment</p>
 
-                <h2 id="investmentResult">₹1,000</h2>
+                        <h2 id="investmentResult">₹1,000</h2>
 
-            </div>
+                    </div>
 
-            <div class="result-card">
+                    <div class="card">
 
-                <h4>Total Withdrawal</h4>
+                        <p>Total Withdrawal</p>
 
-                <h2 id="withdrawResult">₹0</h2>
+                        <h2 id="withdrawResult">₹0</h2>
 
-            </div>
+                    </div>
 
-            <div class="result-card">
+                    <div class="card">
 
-                <h4>Total Interest Earned</h4>
+                        <p>Total Interest Earned</p>
 
-                <h2 id="interestResult">₹0</h2>
+                        <h2 id="interestResult">₹0</h2>
 
-            </div>
+                    </div>
 
-            <div class="result-card">
+                    <div class="card">
 
-                <h4>Final Corpus</h4>
+                        <p>Final Corpus</p>
 
-                <h2 id="corpusResult">₹0</h2>
+                        <h2 id="corpusResult">₹0</h2>
 
-            </div>
+                    </div>
 
-            <div class="chart-box">
+                </div>
 
-                <canvas id="swpChart"></canvas>
+                <div class="chart-card">
 
-            </div>
+                    <canvas id="swpChart"></canvas>
 
-            <div class="status-box" id="statusBox">
+                </div>
 
-                Ready to Calculate
+                <div class="status-card">
 
-            </div>
+                    <span id="statusBox">
+                        Ready to Calculate
+                    </span>
+
+                </div>
+
+            </section>
 
         </section>
 
-    </section>
+    </main>
 
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 
